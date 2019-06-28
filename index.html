@@ -29,7 +29,7 @@
     </header>
     <div class="content-wrapper">
         <div class="content-main animate">
-            <div class="container">    
+            <div class="container">
                 <h1 class="font-size-90">Get Ready!</h1>
                 <h2 class="opacity-60">We build beautiful digital experiences.<br>Something awesome is coming soon!</h2>
             </div>
@@ -51,52 +51,43 @@
 </div>
 <!--end page-wrapper-->
 
-
 <script  src="assets/js/jquery-2.2.1.min.js"></script>
 <script  src="http://maps.google.com/maps/api/js"></script>
 <script  src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script  src="assets/js/jquery.validate.min.js"></script>
 <script  src="assets/js/jquery.magnific-popup.min.js"></script>
-<script  src="assets/js/sketch.min.js"></script>
+<script  src="assets/js/blockrain.jquery.min.js"></script>
 <script  src="assets/js/custom.js"></script>
 
 <script>
+
     // Background
 
-    var COLOURS = [ '#61dfff', '#A7EBCA', '#FFFFFF', '#ff6767', '#61dfff' ];
-    var radius = 0;
-    var randomColor = 0;
-
-    Sketch.create({
-
-        container: document.getElementById( 'background-content' ),
-        autoclear: false,
-        retina: 'auto',
-
-        update: function() {
-            radius = 2 + abs( sin( this.millis * 0.003 ) * 50 );
-        },
-
-        click: function() {
-            randomColor = parseInt( 0 + (COLOURS.length - 0) * Math.random(), 10 ) ;
-        },
-
-        touchmove: function() {
-
-            for ( var i = this.touches.length - 1, touch; i >= 0; i-- ) {
-
-                touch = this.touches[i];
-
-                this.lineCap = 'round';
-                this.lineJoin = 'round';
-                this.fillStyle = this.strokeStyle = COLOURS[ randomColor % COLOURS.length ];
-                this.lineWidth = radius;
-
-                this.beginPath();
-                this.moveTo( touch.ox, touch.oy );
-                this.lineTo( touch.x, touch.y );
-                this.stroke();
+    window.BlockrainThemes = {
+        'my': {
+            background: '#ececec',
+            backgroundGrid: null,
+            primary: null,
+            secondary: null,
+            stroke: null,
+            innerStroke: null,
+            blocks: {
+                line:     '#8dff8b',
+                square:   '#ff6767',
+                arrow:    '#61dfff',
+                rightHook:'#ff6767',
+                leftHook: '#c8c8c8',
+                rightZag: '#ffe858',
+                leftZag:  '#ffffff'
             }
         }
+    };
+    $('#background-content').blockrain({
+        theme: "my",
+        blockWidth: 15,
+        speed: 10,
+        autoplay: true,
+        autoplayRestart: true
     });
 
 
